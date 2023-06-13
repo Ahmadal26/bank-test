@@ -14,12 +14,12 @@ function App() {
     <UserContext.Provider value={[user, setUser]}>
       <div className="App font-mono ">
         <Navbar />
-        <div className="text-white bg-black"> the user value {`${user} -`}</div>
+        {/* <div className="text-white bg-black"> the user value {`${user} -`}</div> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/users" element={<Users />} />
+          {/* <Route path="/users" element={<Users />} /> */}
         </Routes>
       </div>
     </UserContext.Provider>
