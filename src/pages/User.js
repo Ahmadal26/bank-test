@@ -10,7 +10,7 @@ const User = () => {
   return (
     <div className="bg-gray-900 min-h-screen h-screen flex items-center justify-center absolute inset-0 z-[-1]">
       <div className="max-w-[90%] overflow-scroll w-full px-6 py-8 bg-gray-800 rounded-md shadow-md max-h-[80%]">
-        <h2 className="text-3xl text-white font-semibold mb-6 ">Users</h2>
+        <h2 className="text-3xl text-white font-semibold mb-6 ">User</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {users?.map((user) => (
             <div

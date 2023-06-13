@@ -2,10 +2,12 @@ import React, { useContext, useState } from "react";
 import { register } from "../api/auth";
 import { useMutation } from "@tanstack/react-query";
 import UserContext from "../components/context/UserContext";
+import { Navigate } from "react-router-dom/dist";
 
 const Register = () => {
   const [userInfo, setUserInfo] = useState({});
   const [user, setUser] = useContext(UserContext);
+  const [not, setNot] = useState(true);
 
   const handleChange = (e) => {
     if (e.target.name === "image") {
@@ -17,6 +19,14 @@ const Register = () => {
 
   const { mutate: registerFun } = useMutation({
     mutationFn: () => register(userInfo),
+    onSuccess: (data) => {
+      if (data.access) {
+        setUser(true);
+      } else {
+        setNot(false);
+        alert("Password fails to match the required pattern");
+      }
+    },
   });
 
   const handleFormSubmit = (e) => {
@@ -24,6 +34,9 @@ const Register = () => {
     registerFun();
     // Add register logic here
   };
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="bg-green-900 min-h-screen flex items-center justify-center absolute inset-0 z-[-1]">
@@ -35,12 +48,12 @@ const Register = () => {
               htmlFor="name"
               className="block text-white text-sm font-medium mb-2"
             >
-              Name
+              Username
             </label>
             <input
               type="text"
               id="name"
-              name="name"
+              name="username"
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required

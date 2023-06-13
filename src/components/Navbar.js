@@ -1,9 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "./context/UserContext";
+import { logout } from "../api/auth";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
+  console.log(user);
+  const handelLogout = () => {
+    logout();
+    setUser(false);
+  };
 
   return (
     <nav className="bg-green-800">
@@ -25,13 +31,13 @@ const Navbar = () => {
                 Home
               </NavLink>
 
-              {/* <NavLink
-                to="/users"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              ></NavLink> */}
-
               {user ? (
-                <button>Logout</button>
+                <button
+                  onClick={handelLogout}
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Logout
+                </button>
               ) : (
                 <>
                   <NavLink
